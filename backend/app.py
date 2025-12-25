@@ -199,7 +199,8 @@ def admin_create_student(current_user):
 def login():
     data = request.json
     users = load_users()
-    user = next((u for u in users if u['username'] == data['username']), None)
+    # Case-insensitive login
+    user = next((u for u in users if u['username'].lower() == data['username'].lower()), None)
     
     if not user:
         return jsonify({'message': 'User does not exist'}), 401
