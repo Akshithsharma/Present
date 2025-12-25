@@ -1,0 +1,22 @@
+[
+    {
+        "user_id": "c0b35ff8-3b7f-484f-8097-5991681ce833",
+        "username": "admin",
+        "password": "scrypt:32768:8:1$jDKzPTEzybNKwm9Z$61775ea33dd46eb423c9ab0caebc9e84686f7bce88cd5a69dc9d1404f2fbdbb563ef8c0a8205fde0fb23327ed266d509edc3d6c604405697ef8c6e72895d4223",
+        "role": "admin"
+    },
+    {
+        "user_id": "5abe87f2-bc8a-43b1-9c14-e35801845b49",
+        "username": "Akshaya",
+        "password": "scrypt:32768:8:1$HbzgFP3hiju1sg6W$d7a770c35d05acc93d40e1a68e616e0e53aa2466f3bd98aa8dd9e3fd4c182bdab1e0a3fdad62f163d5a55e4091bfbe9c1dedfbeb92760ef416fd5a5fcd5e328f",
+        "role": "student",
+        "student_id": "43c67ea6-8782-42ca-a88e-4c53b6de6c8a"
+    },
+    {
+        "user_id": "680cbaae-be09-4291-9922-e474b3e06897",
+        "username": "Aditi",
+        "password": "scrypt:32768:8:1$YtG59PeV77R7YE5u$8b3f5dcbbeab3e4b9b89f2bcc7eae6e08caaa07b4e68923d2aa0497a0c82d484c94ae56dc3105e3c1013d5a58be5bb5febd4cb6fede40bba24d8f776667bcd75",
+        "role": "student",
+        "student_id": "10deda64-6732-4bb7-b24f-bb746f15cb40"
+    }
+]

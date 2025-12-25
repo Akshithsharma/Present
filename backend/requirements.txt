@@ -1,0 +1,10 @@
+flask
+flask-cors
+scikit-learn
+pandas
+pymongo
+python-dotenv
+pyjwt
+werkzeug
+requests
+waitress
