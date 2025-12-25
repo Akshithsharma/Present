@@ -1,4 +1,9 @@
 from waitress import serve
+import warnings
+
+# Suppress sklearn version warnings
+warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
+
 from app import app
 import os
 
