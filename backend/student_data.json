@@ -1,118 +1,22 @@
 [
     {
-        "student_id": "8ff15b71-f97a-476f-a4a1-ddd86a275047",
-        "name": "Akshith",
-        "email": "akshithsharmapokkuluri@gmail.com",
-        "academic_details": {
-            "cgpa": 7.94,
-            "backlogs": 0
-        },
-        "skills": [
-            "Python",
-            "React",
-            "SQL",
-            "JAVA",
-            "MERN STACK"
-        ],
-        "projects": [
-            {
-                "title": "Project"
-            },
-            {
-                "title": "Project"
-            },
-            {
-                "title": "Project"
-            },
-            {
-                "title": "Project"
-            },
-            {
-                "title": "Project"
-            },
-            {
-                "title": "Project"
-            },
-            {
-                "title": "Project"
-            },
-            {
-                "title": "Project"
-            }
-        ],
-        "coding_habits": {
-            "leetcode_problems": 262,
-            "github_streak": 15,
-            "leetcode_easy": 175,
-            "leetcode_medium": 81,
-            "leetcode_hard": 6,
-            "hackerrank_problems": 0,
-            "hackerrank_badges": 3
-        },
-        "leetcode_username": "P_A_R_L_Sharma",
-        "hackerrank_username": "akshithsharmapo1",
-        "coding_history": [
-            {
-                "date": "2025-12-25",
-                "stats": {
-                    "leetcode": {
-                        "total_solved": 262,
-                        "easy_solved": 175,
-                        "medium_solved": 81,
-                        "hard_solved": 6
-                    }
-                },
-                "timestamp": "2025-12-25T06:26:30.282872"
-            },
-            {
-                "date": "2025-12-25",
-                "stats": {
-                    "leetcode": {
-                        "total_solved": 262,
-                        "easy_solved": 175,
-                        "medium_solved": 81,
-                        "hard_solved": 6
-                    },
-                    "hackerrank": {
-                        "total_solved": 0,
-                        "badges_count": 3
-                    }
-                },
-                "timestamp": "2025-12-25T06:28:23.230853"
-            },
-            {
-                "date": "2025-12-25",
-                "stats": {
-                    "leetcode": {
-                        "total_solved": 262,
-                        "easy_solved": 175,
-                        "medium_solved": 81,
-                        "hard_solved": 6
-                    },
-                    "hackerrank": {
-                        "total_solved": 0,
-                        "badges_count": 3
-                    }
-                },
-                "timestamp": "2025-12-25T06:36:20.612916"
-            },
-            {
-                "date": "2025-12-25",
-                "stats": {
-                    "leetcode": {
-                        "total_solved": 262,
-                        "easy_solved": 175,
-                        "medium_solved": 81,
-                        "hard_solved": 6
-                    },
-                    "hackerrank": {
-                        "total_solved": 0,
-                        "badges_count": 3
-                    }
-                },
-                "timestamp": "2025-12-25T07:35:07.889497"
-            }
-        ],
-        "created_at": "2025-12-25T06:28:08.881375"
+        "student_id": "43c67ea6-8782-42ca-a88e-4c53b6de6c8a",
+        "name": "Akshaya",
+        "email": "",
+        "academic_details": {},
+        "skills": [],
+        "projects": [],
+        "coding_habits": {},
+        "coding_history": []
+    },
+    {
+        "student_id": "10deda64-6732-4bb7-b24f-bb746f15cb40",
+        "name": "Aditi",
+        "email": "",
+        "academic_details": {},
+        "skills": [],
+        "projects": [],
+        "coding_habits": {},
+        "coding_history": []
     }
 ]
