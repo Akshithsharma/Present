@@ -25,6 +25,10 @@ def serve(path):
     else:
         return send_from_directory(app.static_folder, 'index.html')
 
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory(app.static_folder, 'index.html')
+
 # Enable CORS for all domains for simplicity (Production Note: Restrict this for higher security)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
