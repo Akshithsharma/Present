@@ -395,14 +395,23 @@ def sync_coding_stats(current_user):
 
 @app.route('/api/profile/<student_id>', methods=['DELETE'])
 @token_required
+@app.route('/api/profile/<student_id>', methods=['DELETE'])
+@token_required
 def delete_profile(current_user, student_id):
     if current_user['role'] != 'admin':
         return jsonify({'message': 'Unauthorized'}), 403
 
+    # 1. Delete Student Profile
     all_data = load_data()
     all_data = [s for s in all_data if s['student_id'] != student_id]
     save_data(all_data)
-    return jsonify({"message": "Profile deleted"})
+
+    # 2. Delete User Login (Cascading Delete)
+    users = load_users()
+    users = [u for u in users if u.get('student_id') != student_id]
+    save_users(users)
+
+    return jsonify({"message": "Profile and User account deleted"})
 
 @app.route('/api/predict', methods=['POST'])
 @token_required
