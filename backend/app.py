@@ -395,8 +395,6 @@ def sync_coding_stats(current_user):
 
 @app.route('/api/profile/<student_id>', methods=['DELETE'])
 @token_required
-@app.route('/api/profile/<student_id>', methods=['DELETE'])
-@token_required
 def delete_profile(current_user, student_id):
     if current_user['role'] != 'admin':
         return jsonify({'message': 'Unauthorized'}), 403

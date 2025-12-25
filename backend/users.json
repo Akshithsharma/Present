@@ -6,24 +6,17 @@
         "role": "admin"
     },
     {
-        "user_id": "5abe87f2-bc8a-43b1-9c14-e35801845b49",
-        "username": "Akshaya",
-        "password": "scrypt:32768:8:1$HbzgFP3hiju1sg6W$d7a770c35d05acc93d40e1a68e616e0e53aa2466f3bd98aa8dd9e3fd4c182bdab1e0a3fdad62f163d5a55e4091bfbe9c1dedfbeb92760ef416fd5a5fcd5e328f",
-        "role": "student",
-        "student_id": "43c67ea6-8782-42ca-a88e-4c53b6de6c8a"
-    },
-    {
-        "user_id": "680cbaae-be09-4291-9922-e474b3e06897",
-        "username": "Aditi",
-        "password": "scrypt:32768:8:1$YtG59PeV77R7YE5u$8b3f5dcbbeab3e4b9b89f2bcc7eae6e08caaa07b4e68923d2aa0497a0c82d484c94ae56dc3105e3c1013d5a58be5bb5febd4cb6fede40bba24d8f776667bcd75",
-        "role": "student",
-        "student_id": "10deda64-6732-4bb7-b24f-bb746f15cb40"
-    },
-    {
         "user_id": "1dd7b11c-51b7-4d82-8204-bbeb746b4149",
         "username": "Akshith",
         "password": "scrypt:32768:8:1$vB72FrliodbjVRsw$6f0b9976a0823dc6488e456f852278fe8f675bb1db548d4aff06c39486c3d2ad242802fd8fa780d833f5485035e30c465ab6ef32975f4dde3fdcf57c218fd4ce",
         "role": "student",
-        "student_id": "3fd0da2e-a818-4ae8-a079-4e76ef1ded81"
+        "student_id": "8ff15b71-f97a-476f-a4a1-ddd86a275047"
+    },
+    {
+        "user_id": "3b66663b-20cd-435e-9394-4d62296297e5",
+        "username": "Akshaya",
+        "password": "scrypt:32768:8:1$XnysmOyvlKmSjZtJ$ed394c0b540644b4bc59cbc894ed3a21e470e079e8aa7a7a5bb915ddaa2b26c58ff9583a97edb5c0b3913f270b5cfbcbb016d5555d0ce93032f145dbec09ecbb",
+        "role": "student",
+        "student_id": "0a135bb2-1740-4566-ba21-e4ebc1f3e74a"
     }
 ]
