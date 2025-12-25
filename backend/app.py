@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from models import Student
 from logic import calculate_readiness_score
@@ -15,16 +15,16 @@ from integrations import fetch_leetcode_stats, fetch_hackerrank_stats, get_daily
 from coach import analyze_progress, generate_recommendations
 
 # Serve React App
-# Assuming valid build exists in ../frontend/dist
-app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
+app = Flask(__name__, static_folder='../frontend/dist')
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
-        return app.send_static_file(path)
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
     else:
-        return app.send_static_file('index.html')
+        return send_from_directory(app.static_folder, 'index.html')
+
 # Enable CORS for all domains for simplicity (Production Note: Restrict this for higher security)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
