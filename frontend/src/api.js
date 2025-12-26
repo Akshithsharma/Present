@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Revert to explicit URL. 0.0.0.0 on backend ensures it listens.
-const baseURL = 'http://127.0.0.1:5000';
+const baseURL = '';
 
 const api = axios.create({
     baseURL,
