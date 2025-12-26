@@ -8,3 +8,6 @@ pyjwt
 werkzeug
 requests
 waitress
+Flask-SQLAlchemy
+psycopg2-binary
+gunicorn

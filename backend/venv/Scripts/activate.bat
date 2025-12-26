@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\akshi\.gemini\antigravity\scratch\student-digital-twin-v2\backend\venv
+set VIRTUAL_ENV=C:\Users\akshi\.gemini\antigravity\playground\photonic-universe\backend\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

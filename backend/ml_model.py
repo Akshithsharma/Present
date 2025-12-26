@@ -17,15 +17,31 @@ class CareerPredictor:
 
     def predict_placement_probability(self, student):
         if not self.model:
-            return 0.0, "Model not loaded"
+            return 0.5, "Model not loaded - Using Mock Probability"
 
-        features = pd.DataFrame([{
-            'cgpa': student.academic_details.get('cgpa', 0),
-            'backlogs': student.academic_details.get('backlogs', 0),
-            'skill_count': len(student.skills),
-            'project_count': len(student.projects),
-            'leetcode_problems': student.coding_habits.get('leetcode_problems', 0)
-        }])
+        # Check if student is a dict or object
+        if isinstance(student, dict):
+            # Handle dict case (safeguard)
+            features = pd.DataFrame([{
+                'cgpa': student.get('academic_details', {}).get('cgpa', 0),
+                'backlogs': student.get('academic_details', {}).get('backlogs', 0),
+                'skill_count': len(student.get('skills', [])),
+                'project_count': len(student.get('projects', [])),
+                'leetcode_problems': student.get('coding_habits', {}).get('leetcode_problems', 0)
+            }])
+        else:
+             # Handle Object case
+             features = pd.DataFrame([{
+                'cgpa': student.academic_details.get('cgpa', 0),
+                'backlogs': student.academic_details.get('backlogs', 0),
+                'skill_count': len(student.skills),
+                'project_count': len(student.projects),
+                'leetcode_problems': student.coding_habits.get('leetcode_problems', 0)
+            }])
 
-        prob = self.model.predict_proba(features)[0][1]
-        return prob, "Success"
+        try:
+            prob = self.model.predict_proba(features)[0][1]
+            return prob, "Success"
+        except Exception as e:
+            print(f"Model Prediction Error: {e}")
+            return 0.5, f"Error: {str(e)}"

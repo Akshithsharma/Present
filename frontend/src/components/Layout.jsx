@@ -1,106 +1,99 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, UserCircle, Activity, Library, LogOut, BookOpen, ChevronLeft, ChevronRight, Menu } from 'lucide-react';
+import React from 'react';
+import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { LogOut, User, LayoutDashboard, Play, Settings } from 'lucide-react';
 
-const Layout = ({ children }) => {
-    const location = useLocation();
+const Layout = () => {
     const { user, logout } = useAuth();
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const navItems = [
-        { path: '/', label: 'Home', icon: LayoutDashboard },
-        { path: '/practice', label: 'Practice Hub', icon: BookOpen },
-        { path: '/saved-dashboards', label: user?.role === 'admin' ? 'All Dashboards' : 'My Dashboard', icon: Library },
-        { path: '/simulation', label: 'Simulation', icon: Activity },
-    ];
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
 
     if (!user) return null;
 
     return (
-        <div className="flex h-screen bg-slate-50 transition-all duration-300">
+        <div className="min-h-screen bg-slate-50 flex">
             {/* Sidebar */}
-            <aside
-                className={`bg-white border-r border-slate-200 flex flex-col justify-between transition-all duration-300 ease-in-out relative ${isCollapsed ? 'w-20' : 'w-64'
-                    }`}
-            >
-                {/* Toggle Button */}
-                <button
-                    onClick={() => setIsCollapsed(!isCollapsed)}
-                    className="absolute -right-3 top-9 bg-white border border-slate-200 rounded-full p-1 shadow-sm hover:bg-slate-50 z-10"
-                >
-                    {isCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
-                </button>
-
-                <div>
-                    <div className={`p-6 flex items-center ${isCollapsed ? 'justify-center' : 'gap-2'} transition-all`}>
-                        <Activity className="h-8 w-8 text-primary shrink-0" />
-                        <div className={`overflow-hidden transition-all duration-300 ${isCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'}`}>
-                            <h1 className="text-xl font-bold text-primary whitespace-nowrap">
-                                Digital Twin
-                            </h1>
-                        </div>
-                    </div>
-
-                    {!isCollapsed && (
-                        <p className="text-xs text-slate-500 mb-4 px-6 whitespace-nowrap overflow-hidden transition-opacity duration-300">
-                            Logged in: <span className="font-semibold">{user.username}</span>
-                        </p>
-                    )}
-
-                    <nav className="px-3 space-y-2">
-                        {navItems.map((item) => {
-                            const Icon = item.icon;
-                            const isActive = location.pathname === item.path;
-
-                            return (
-                                <Link
-                                    key={item.path}
-                                    to={item.path}
-                                    className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-all group ${isActive
-                                            ? 'bg-primary/10 text-primary font-medium'
-                                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                                        } ${isCollapsed ? 'justify-center' : ''}`}
-                                    title={isCollapsed ? item.label : ''}
-                                >
-                                    <Icon className="h-5 w-5 shrink-0" />
-                                    <span className={`whitespace-nowrap overflow-hidden transition-all duration-300 ${isCollapsed ? 'w-0 opacity-0' : 'w-32 opacity-100'
-                                        }`}>
-                                        {item.label}
-                                    </span>
-
-                                    {/* Tooltip for collapsed state */}
-                                    {isCollapsed && (
-                                        <div className="absolute left-16 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity z-50 whitespace-nowrap">
-                                            {item.label}
-                                        </div>
-                                    )}
-                                </Link>
-                            );
-                        })}
-                    </nav>
+            <aside className="w-64 bg-slate-900 text-white flex flex-col fixed h-full transition-all duration-300">
+                <div className="p-6">
+                    <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                        DigitalTwin
+                    </h1>
                 </div>
 
-                <div className="p-4 border-t border-slate-100">
+                <nav className="flex-1 px-4 space-y-2 mt-4">
+                    <Link to="/" className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-all">
+                        {user.role === 'admin' ? <User size={20} /> : <LayoutDashboard size={20} />}
+                        {/* Admin Home is Saved Profiles, Student Home is Dashboard */}
+                        <span>{user.role === 'admin' ? 'Saved Profiles' : 'Dashboard'}</span>
+                    </Link>
+
+                    {/* Admin Context Menu (Dynamic) */}
+                    {user.role === 'admin' && (
+                        <>
+                            {/* Check if we are viewing a specific student */}
+                            {location.pathname.includes('/student/') && (
+                                <div className="mt-4 pt-4 border-t border-slate-700 animate-in fade-in">
+                                    <div className="px-4 text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Student Context</div>
+
+                                    {/* We need to extract ID if possible, or reliance on the fact that we are in a sub-route */}
+                                    {/* Simple trick: use the same path structure logic */}
+                                    <div className="space-y-1">
+                                        <div className="px-4 py-2 bg-slate-800 rounded text-blue-300 text-sm font-bold flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span> Acting as Student
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    )}
+
+                    {user.role === 'student' && (
+                        <>
+                            <Link to={`/simulation/${user.student_id}`} className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-all">
+                                <Play size={20} />
+                                <span>Simulation</span>
+                            </Link>
+                            <Link to={`/profile/${user.student_id}`} className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-all">
+                                <User size={20} />
+                                <span>My Profile</span>
+                            </Link>
+                            <Link to="/practice" className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-slate-800 hover:text-white rounded-xl transition-all">
+                                <span className="text-xl">⚔️</span>
+                                <span>Practice Hub</span>
+                            </Link>
+                        </>
+                    )}
+                </nav>
+
+                <div className="p-4 border-t border-slate-800">
+                    <div className="flex items-center gap-3 px-4 py-3 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center font-bold">
+                            {user.username.charAt(0).toUpperCase()}
+                        </div>
+                        <div className="flex-1 overflow-hidden">
+                            <p className="text-sm font-medium truncate">{user.username}</p>
+                            <p className="text-xs text-slate-400 capitalize">{user.role}</p>
+                        </div>
+                    </div>
                     <button
-                        onClick={logout}
-                        className={`flex items-center gap-3 px-3 py-3 rounded-lg w-full text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors ${isCollapsed ? 'justify-center' : ''
-                            }`}
-                        title={isCollapsed ? "Logout" : ""}
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-2 px-4 py-2 text-red-400 hover:bg-slate-800 rounded-lg transition-colors text-sm"
                     >
-                        <LogOut className="h-5 w-5 shrink-0" />
-                        <span className={`whitespace-nowrap overflow-hidden transition-all duration-300 ${isCollapsed ? 'w-0 opacity-0' : 'w-auto opacity-100'
-                            }`}>
-                            Logout
-                        </span>
+                        <LogOut size={16} />
+                        Logout
                     </button>
                 </div>
             </aside>
 
             {/* Main Content */}
-            <main className="flex-1 overflow-auto p-4 md:p-8 transition-all duration-300">
+            <main className="flex-1 ml-64 p-8">
                 <div className="max-w-7xl mx-auto">
-                    {children}
+                    <Outlet />
                 </div>
             </main>
         </div>

@@ -23,27 +23,11 @@ const Profile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // If ID is provided (Admin editing specific student), fetch that student.
-                // If no ID, fetch "own" profile (backend handles logic based on token, but likely better to call specific API if we want to support both)
-                // Actually, backend /api/profile/<id> works for admin. 
-                // For student accessing /profile, it might be tricky if they don't know their ID.
-                // BUT, Layout links to /profile.
-                // Let's assume /api/profile endpoint exists that returns "my profile" or we use /api/profiles and take first?
-                // Wait, existing backend has GET /api/profiles (list). 
-                // We need GET /api/profile (single) for "me"? 
-                // Currently GET /api/profile/<id> exists.
-                // Let's modify logic:
-                // If params.id -> GET /api/profile/:id
-                // If no params.id -> GET /api/profiles -> take the first one (since specific student sees only theirs).
-
                 let targetId = id;
 
                 if (!targetId) {
                     const listRes = await api.get('/api/profiles');
                     if (listRes.data && listRes.data.length > 0) {
-                        // Default to first profile (student's own)
-                        // For student role this is fine. Admin clicking sidebar "Edit Profile" (if it existed) would see all?
-                        // But we are removing "Edit Profile" from sidebar for Admin.
                         const myProfile = listRes.data[0];
                         setFormData({
                             name: myProfile.name,
@@ -120,9 +104,16 @@ const Profile = () => {
         try {
             await api.post('/api/profile', payload);
             if (id) {
-                navigate(`/dashboard/${id}`);
+                // Return to the dashboard of the student we just edited
+                // Check if we are admin to determine correct route format if needed, 
+                // but our Routes handle /student/:id/dashboard well.
+                // Or standard /dashboard for student role.
+
+                // Safe bet:
+                navigate(`/student/${id}/dashboard`);
             } else {
-                navigate('/saved-dashboards');
+                // Saved "My Profile" -> Go Home
+                navigate('/');
             }
         } catch (error) {
             console.error("Error saving profile:", error);

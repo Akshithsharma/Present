@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\akshi\.gemini\antigravity\scratch\student-digital-twin-v2\backend\venv"
+VIRTUAL_ENV="C:\Users\akshi\.gemini\antigravity\playground\photonic-universe\backend\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

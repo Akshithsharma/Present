@@ -1,22 +1,15 @@
 [
     {
-        "user_id": "c0b35ff8-3b7f-484f-8097-5991681ce833",
+        "user_id": "1675aa70-f096-447d-9630-3415cd7c5851",
         "username": "admin",
-        "password": "scrypt:32768:8:1$jDKzPTEzybNKwm9Z$61775ea33dd46eb423c9ab0caebc9e84686f7bce88cd5a69dc9d1404f2fbdbb563ef8c0a8205fde0fb23327ed266d509edc3d6c604405697ef8c6e72895d4223",
+        "password": "scrypt:32768:8:1$jBPCVbHyp2aaDUh8$7349914378c1dca4ef73144d04ae59dfcd7249fadda92ce681eb105a9ae9589b7e97e0d845d2209c4833656732fe7ab1a9943a5209e19d527761a522db6c86f6",
         "role": "admin"
     },
     {
-        "user_id": "1dd7b11c-51b7-4d82-8204-bbeb746b4149",
+        "user_id": "d049d012-1f4d-4440-ae18-f682d18728df",
         "username": "Akshith",
-        "password": "scrypt:32768:8:1$vB72FrliodbjVRsw$6f0b9976a0823dc6488e456f852278fe8f675bb1db548d4aff06c39486c3d2ad242802fd8fa780d833f5485035e30c465ab6ef32975f4dde3fdcf57c218fd4ce",
+        "password": "scrypt:32768:8:1$nYX62nNdMLQXjcXo$29a710840e0cf7c289cc31b1129cfad8a04252099865ac10e4ba7f5d43a5940f6f0b356920cdffd19bbfb9a2e3e9e5042bdcaf9ed583c1eba19bd84a75ae551b",
         "role": "student",
         "student_id": "8ff15b71-f97a-476f-a4a1-ddd86a275047"
-    },
-    {
-        "user_id": "3b66663b-20cd-435e-9394-4d62296297e5",
-        "username": "Akshaya",
-        "password": "scrypt:32768:8:1$XnysmOyvlKmSjZtJ$ed394c0b540644b4bc59cbc894ed3a21e470e079e8aa7a7a5bb915ddaa2b26c58ff9583a97edb5c0b3913f270b5cfbcbb016d5555d0ce93032f145dbec09ecbb",
-        "role": "student",
-        "student_id": "0a135bb2-1740-4566-ba21-e4ebc1f3e74a"
     }
 ]
