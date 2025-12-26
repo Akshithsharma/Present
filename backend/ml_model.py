@@ -83,4 +83,4 @@ class CareerPredictor:
             return prob, "Success"
         except Exception as e:
             print(f"Model Prediction Error: {e}")
-            return 0.0, f"Error: {str(e)}"
+            return 0.0, f"ML Error: {str(e)}"

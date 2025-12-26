@@ -9,7 +9,7 @@ const Dashboard = () => {
     const { user } = useAuth();
     const { id } = useParams(); // Get ID from URL if present (Admin context)
     const [myProfile, setMyProfile] = useState(null);
-    const [metrics, setMetrics] = useState({ readiness: 0, probability: 0, risk: 'Low' });
+    const [metrics, setMetrics] = useState({ readiness: 0, probability: 0, risk: 'Low', ml_message: '' });
     const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
@@ -47,7 +47,8 @@ const Dashboard = () => {
                     setMetrics({
                         readiness: predRes.data.readiness_score,
                         probability: predRes.data.placement_probability,
-                        risk: predRes.data.risk_level
+                        risk: predRes.data.risk_level,
+                        ml_message: predRes.data.ml_message
                     });
                 } catch (error) {
                     console.error("Prediction API failed", error);
@@ -115,6 +116,7 @@ const Dashboard = () => {
                     </div>
                     <p className="text-3xl font-bold text-slate-800">{Math.round(metrics.probability * 100)} %</p>
                     <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">{metrics.risk} RISK</p>
+                    {metrics.ml_message && <p className="text-[10px] text-red-500 mt-1">{metrics.ml_message}</p>}
                 </div>
 
                 {/* Skills */}
